@@ -1,0 +1,321 @@
+app name-kuku afya
+
+{color & theme set up @values    themes.xml}
+
+                      <resources xmlns:tools="http://schemas.android.com/tools">
+                          <!-- Base application theme. -->
+                          <style name="Base.Theme.KukuAfya" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+                              <!-- Customize your light theme here. -->
+                              <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+                              <item name="colorPrimary">@color/white</item>
+                              <item name="colorPrimaryVariant">@color/white</item>
+                              <item name="android:statusBarColor">@color/black</item>
+                              <item name="android:textColorPrimary">@color/white</item>
+                          </style>
+                      
+                          <style name="Theme.KukuAfya" parent="Base.Theme.KukuAfya" />
+                      
+                          <style name="ThemeOverlay.AppCompat.Navtheme">
+                              <item name="colorPrimary">@color/white</item>
+                          </style>
+                      </resources>
+
+
+{string.xml}
+                  <string name="navigation_open_drawer">Open navigation Drawer</string>
+                    <string name="navigation_close_drawer">Close navigation Drawer</string>
+
+
+
+new resourse menu navigation drawer menu + for bottom nav menu (if needed);
+                          <?xml version="1.0" encoding="utf-8"?>
+                                <menu xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    tools:showIn="navigation_view">
+                                   <group
+                                    android:checkableBehavior="single">
+                                
+                                
+                                   <item android:title="profile "
+                                        android:icon="@drawable/baseline_person_24"
+                                        android:id="@+id/Profile"
+                                       />
+                                
+                                       <item android:title="About"
+                                           android:id="@+id/About"
+                                           android:icon="@drawable/baseline_arrow_right_24"
+                                           />
+                                       <item android:title="Logout"
+                                           android:id="@+id/logout"
+                                           android:icon="@drawable/baseline_logout_24"
+                                           />
+                                
+                                    </group>
+                                </menu>
+
+
+
+      for bottom;
+                                                              <?xml version="1.0" encoding="utf-8"?>
+                                      <menu xmlns:android="http://schemas.android.com/apk/res/android">
+                                      
+                                          <item android:title="Home"
+                                              android:id="@+id/Home"
+                                              android:icon="@drawable/baseline_home_24"/>
+                                      
+                                          <item android:title="Detect"
+                                              android:id="@+id/Detect"
+                                              android:icon="@drawable/baseline_image_search_24"/>
+                                      
+                                          <item android:title=""
+                                              android:enabled="true"/>
+                                      
+                                          <item android:title="Community"
+                                              android:id="@+id/Community"
+                                              android:icon="@drawable/baseline_subscriptions_24"/>
+                                      
+                                          <item android:title="Notes"
+                                              android:id="@+id/Notes"
+                                              android:icon="@drawable/baseline_notes_24"/>
+                                      
+                                      
+                                      
+                                      </menu>
+
+can also build a nabigation drawer header if necessary;  by clicking the layout 
+
+
+                              <?xml version="1.0" encoding="utf-8"?>
+                              <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:orientation="vertical"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="176dp"
+                                  android:padding="16dp"
+                                  android:gravity="top"
+                                  android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                                  android:background="@color/white"
+                                  >
+                              
+                                  <ImageView
+                                      android:layout_width="200dp"
+                                      android:layout_height="150dp"
+                                      android:layout_gravity="center"
+                                      android:src="@drawable/hen"/>
+                              
+                              
+                              
+                              </LinearLayout>
+
+
+my activity main.xml  
+
+                                            
+                                            <?xml version="1.0" encoding="utf-8"?>
+                                            <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                xmlns:tools="http://schemas.android.com/tools"
+                                                android:id="@+id/drawer_layout"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                tools:context=".MainActivity">
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@color/white">
+                                            
+                                                <androidx.appcompat.widget.Toolbar
+                                                    android:id="@+id/toolbar"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="?attr/actionBarSize"
+                                                    android:background="@color/lime"
+                                                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                                                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                                                    />
+                                            
+                                                <FrameLayout
+                                                    android:id="@+id/fragment_container"
+                                                     android:layout_height="match_parent"
+                                                    android:layout_width="match_parent"/>
+                                            
+                                                
+                                                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+                                            
+                                                    <com.google.android.material.bottomappbar.BottomAppBar
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="bottom"
+                                                        android:backgroundTint="@color/lime"
+                                                        app:fabCradleMargin="10dp"
+                                                        app:fabCradleRoundedCornerRadius="50dp"
+                                                        android:id="@+id/bottom">
+                                            
+                                                        <com.google.android.material.bottomnavigation.BottomNavigationView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:id="@+id/bottom_navigation"
+                                                            app:labelVisibilityMode="labeled"
+                                                            app:menu="@menu/bottom_nav_menu"
+                                                            android:background="@android:color/transparent"/>
+                                            
+                                            
+                                            
+                                                    </com.google.android.material.bottomappbar.BottomAppBar>
+                                            
+                                            
+                                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:backgroundTint="@color/lime"
+                                                            android:src="@drawable/baseline_chat_24"
+                                                            android:id="@+id/fab"
+                                                            app:layout_anchor="@id/bottom"
+                                                            app:maxImageSize="40dp"
+                                                            android:tint="@color/black">
+                                            
+                                                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                                            
+                                                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                                            </RelativeLayout>
+                                            
+                                                <com.google.android.material.navigation.NavigationView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="match_parent"
+                                                    android:id="@+id/navigation_drawer"
+                                                    android:layout_gravity="start"
+                                                    android:background="@color/lime"
+                                                    app:itemTextColor="@color/black"
+                                                    app:itemIconTint="@color/black"
+                                                    android:theme="@style/ThemeOverlay.AppCompat.Navtheme"
+                                                    app:headerLayout="@layout/nav_header"
+                                                    app:menu="@menu/navigation_drawer_menu"/>
+                                            
+                                            </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+            build the necessary fragmentsss.....
+
+
+finally my main.java
+
+
+
+
+                                                package com.example.kukuafya;
+                                                
+                                                import android.os.Bundle;
+                                                import android.view.MenuItem;
+                                                import android.view.View;
+                                                import androidx.annotation.NonNull;
+                                                import androidx.appcompat.app.ActionBarDrawerToggle;
+                                                import androidx.appcompat.app.AppCompatActivity;
+                                                import androidx.core.view.GravityCompat;
+                                                import androidx.drawerlayout.widget.DrawerLayout;
+                                                import androidx.fragment.app.Fragment;
+                                                import androidx.fragment.app.FragmentManager;
+                                                import androidx.fragment.app.FragmentTransaction;
+                                                import com.google.android.material.bottomnavigation.BottomNavigationView;
+                                                import com.google.android.material.floatingactionbutton.FloatingActionButton;
+                                                import com.google.android.material.navigation.NavigationBarView;
+                                                import com.google.android.material.navigation.NavigationView;
+                                                
+                                                
+                                                public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+                                                
+                                                    private DrawerLayout drawerLayout;
+                                                    private BottomNavigationView bottomNavigationView;
+                                                    private FragmentManager fragmentManager;
+                                                    private FloatingActionButton fab;
+                                                
+                                                    @Override
+                                                    protected void onCreate(Bundle savedInstanceState) {
+                                                        super.onCreate(savedInstanceState);
+                                                        setContentView(R.layout.activity_main);
+                                                
+                                                        // Initialize views
+                                                        fab = findViewById(R.id.fab);
+                                                        setSupportActionBar(findViewById(R.id.toolbar));
+                                                
+                                                        drawerLayout = findViewById(R.id.drawer_layout);
+                                                        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                                                                this, drawerLayout, findViewById(R.id.toolbar),
+                                                                R.string.navigation_open_drawer, R.string.navigation_close_drawer
+                                                        );
+                                                        drawerLayout.addDrawerListener(toggle);
+                                                        toggle.syncState();
+                                                
+                                                        NavigationView navigationView = findViewById(R.id.navigation_drawer);
+                                                        navigationView.setNavigationItemSelectedListener(this);
+                                                
+                                                        bottomNavigationView = findViewById(R.id.bottom_navigation);
+                                                        bottomNavigationView.setBackground(null);
+                                                
+                                                        fragmentManager = getSupportFragmentManager();
+                                                        openFragment(new homeFragment());  // Load the home fragment by default
+                                                
+                                                        // Bottom navigation listener
+                                                        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+                                                            @Override
+                                                            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                                                                int itemID = item.getItemId();
+                                                                if (itemID == R.id.Home) {
+                                                                    openFragment(new homeFragment());
+                                                                    return true;
+                                                                } else if (itemID == R.id.Detect) {
+                                                                    openFragment(new detectFragment());
+                                                                    return true;
+                                                                } else if (itemID == R.id.Community) {
+                                                                    openFragment(new communityFragment());
+                                                                    return true;
+                                                                } else if (itemID == R.id.Notes) {
+                                                                    openFragment(new notesFragment());
+                                                                    return true;
+                                                                }
+                                                                return false;
+                                                            }
+                                                        });
+                                                
+                                                
+                                                        // Floating Action Button listener
+                                                        fab.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                openFragment(new chatFragment());
+                                                            }
+                                                        });
+                                                    }
+                                                
+                                                    @Override
+                                                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                                                        int itemId = item.getItemId();  // Get the selected item's ID
+                                                
+                                                        if (itemId == R.id.Profile) {
+                                                            openFragment(new profileFragment());  // Open Profile fragment
+                                                        } else if (itemId == R.id.About) {
+                                                            openFragment(new AboutFragment());  // Open About fragment
+                                                        }
+                                                
+                                                        // Close the navigation drawer after a selection is made
+                                                        drawerLayout.closeDrawer(GravityCompat.START);
+                                                        return true;
+                                                    }
+                                                
+                                                
+                                                    @Override
+                                                    public void onBackPressed() {
+                                                        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                                                            drawerLayout.closeDrawer(GravityCompat.START);
+                                                        } else {
+                                                            super.onBackPressed();
+                                                        }
+                                                    }
+                                                
+                                                    private void openFragment(Fragment fragment) {
+                                                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                                        transaction.replace(R.id.fragment_container, fragment);
+                                                        transaction.commit();
+                                                    }
+                                                }
+
